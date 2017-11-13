@@ -7,20 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Wine Selections</title>
-<link rel="stylesheet" type="text/css" href="styles.css">
-<style>
-body{background-image: url("file:///Users/chrisgehrke/SD/Java/stsworkspace/MVCProject/WebContent/images/WineCountryBackground.jpg");
-  height: 100%;
- background-position: right;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-}
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 
-</style>
 </head>
 <body>
-	<h2>Welcome to Wine Country</h2>
+	<h1>Welcome to Wine Country</h1>
 
 	<form:form action="getWine.do" method="post" modelAttribute="idForm">
 		<form:input path="id" />
@@ -30,7 +21,7 @@ body{background-image: url("file:///Users/chrisgehrke/SD/Java/stsworkspace/MVCPr
 		<input type="submit" value="Get a Wine">
 	</form:form>
 <p>
-All Wines: <br>
+<h3>All Wines: </h3><br>
 <c:forEach var="vine" items="${list }">
 
 <a href="info.do?id=${vine.id }">${vine.name }</a>

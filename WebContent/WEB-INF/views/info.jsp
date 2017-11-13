@@ -4,12 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 <title>Wine Info</title>
-<link rel=“stylesheet” href=“css/styles.css” type="text/css">
 </head>
-
 <body>
-
 ${wine.name}<br>
 ${wine.bottlesize}<br>
 ${wine.abv}<br>
