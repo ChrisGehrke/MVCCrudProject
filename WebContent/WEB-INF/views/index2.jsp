@@ -7,6 +7,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Wine Selections</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style>
+body{background-image: url("file:///Users/chrisgehrke/SD/Java/stsworkspace/MVCProject/WebContent/images/WineCountryBackground.jpg");
+  height: 100%;
+ background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+}
+
+</style>
 </head>
 <body>
 	<h2>Welcome to Wine Country</h2>
@@ -20,17 +31,17 @@
 	</form:form>
 <p>
 All Wines: <br>
-<c:forEach var="gir" items="${list }">
+<c:forEach var="vine" items="${list }">
 
-<a href="info.do?id=${gir}.id }">${gir.name }</a>
+<a href="info.do?id=${vine.id }">${vine.name }</a>
 
 <form method="post" action="update.do">
 	<input type="submit" value="Update" >
-	<input type="hidden" name="id" value="${gir.id }">
+	<input type="hidden" name="id" value="${vine.id }">
 </form>
 <form method="post" action="delete.do">
 	<input type="submit" value="Delete" >
-	<input type="hidden" name="id" value="${gir.id }">
+	<input type="hidden" name="id" value="${vine.id }">
 </form>
 <br>
 </c:forEach>

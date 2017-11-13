@@ -5,11 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Wine Info</title>
+<link rel=“stylesheet” href=“css/styles.css” type="text/css">
 </head>
+
 <body>
+
 ${wine.name}<br>
 ${wine.bottlesize}<br>
-${wine.abv}
+${wine.abv}<br>
+${wine.price}
 <p>
 <a href="home.do">Home</a>
 </p>
