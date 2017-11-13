@@ -1,4 +1,4 @@
-group = 'MVCProjects'
+group = 'MVCProject'
 version = '1.0.0-BUILD-SNAPSHOT'  // Bump this as you add features/fix bugs
 
 apply plugin: 'java'
@@ -7,11 +7,12 @@ apply plugin: 'eclipse-wtp'
 
 sourceSets {
   main {
-    java.srcDirs 'src/main/java'
+    //java.srcDirs 'src/main/java'
+    java.srcDirs 'src'
   }
-  test {
-    java.srcDirs 'src/test/java'
-  }
+  //test {
+    //java.srcDirs 'src/test/java'
+  //}
 }
 
 war {

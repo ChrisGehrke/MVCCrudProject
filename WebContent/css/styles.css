@@ -1,7 +1,7 @@
 body {
 	background-image:
-		url("file:///Users/chrisgehrke/SD/Java/stsworkspace/MVCProject/WebContent/images/WineCountryBackground.jpg");
-	height: 100%;
+		url("../images/WineCountryBackground.jpg");
+	height: 50%;
 	background-position: right;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -38,6 +38,10 @@ p{
 
 
 a:link {
+    color: cadetblue;
+}
+    
+a:visited {
     color: cadetblue;
 }
     
