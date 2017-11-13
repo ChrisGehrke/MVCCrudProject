@@ -22,16 +22,16 @@ public class WineDAOImpl implements WineDAO {
 	}
 
 	 private void loadSampleWines() {
-		 wines.put(id, new Wine(id++, "Champagne Brut Yellow Label",375, 12, 38.93));
-		 wines.put(id, new Wine(id++, "Veuve Clicquot Brut Chapagne",375, 12, 27.99));
-		 wines.put(id, new Wine(id++,"Gabbiano Chianti Classico D.O.G.C.",750, 13, 12.99));
-		 wines.put(id, new Wine(id++,"Risata Moscato D'Asti",750, 11, 11.99));
-		 wines.put(id, new Wine(id++,"Veuve Clicquot Brut Rose Chapagne",750, 12.5, 12.99));
-		 wines.put(id, new Wine(id++,"Cupcake Vineyards Moscato D'Asti",750, 5.5, 10.99));
-		 wines.put(id, new Wine(id++,"Barefoot Bubbly Pink Moscato",750, 9.58, 10.99));
-		 wines.put(id, new Wine(id++,"Barefoot Moscato",750, 9, 5.99));
-		 wines.put(id, new Wine(id++,"Barefoot Red Moscato",750, 9, 5.99));
-		 wines.put(id, new Wine(id++,"Barefoot Pink Moscato",750, 9.58, 5.99));
+		 wines.put(id, new Wine(id++, "Champagne Brut Yellow Label",375, 12, 38.93,"pagina_prodotto.jpg"));
+		 wines.put(id, new Wine(id++, "Veuve Clicquot Brut Chapagne",375, 12, 27.99,"veavebrut.jpeg"));
+		 wines.put(id, new Wine(id++,"Gabbiano Chianti Classico D.O.G.C.",750, 13, 12.99,"Gabbiano.jpeg"));
+		 wines.put(id, new Wine(id++,"Risata Moscato D'Asti",750, 11, 11.99,"Risata.jpeg"));
+		 wines.put(id, new Wine(id++,"Veuve Clicquot Brut Rose Chapagne",750, 12.5, 12.99,"VeuveRose.jpeg"));
+		 wines.put(id, new Wine(id++,"Cupcake Vineyards Moscato D'Asti",750, 5.5, 10.99,"Cupcakewine.jpeg"));
+		 wines.put(id, new Wine(id++,"Barefoot Bubbly Pink Moscato",750, 9.58, 10.99,"Barefootbubbly.jpeg"));
+		 wines.put(id, new Wine(id++,"Barefoot Moscato",750, 9, 5.99,"BarefootMoscato.jpeg"));
+		 wines.put(id, new Wine(id++,"Barefoot Red Moscato",750, 9, 5.99,"BarefootRedMascato.jpeg"));
+		 wines.put(id, new Wine(id++,"Barefoot Pink Moscato",750, 9.58, 5.99,"BarefootPinkMascato.jpeg"));
 		 
 	 }
 	 

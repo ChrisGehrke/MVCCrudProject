@@ -13,10 +13,28 @@ public class Wine {
     private double bottlesize;
     private double abv;
     private double price;
-
+    private String imageName;
     
 
-    public Wine(int id, String name, double bottlesize, double abv, double price) {
+    public Wine(int id, String name, double bottlesize, double abv, double price, String imageName) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.bottlesize = bottlesize;
+		this.abv = abv;
+		this.price = price;
+		this.imageName = imageName;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public Wine(int id, String name, double bottlesize, double abv, double price) {
 		super();
 		this.id = id;
 		this.name = name;
