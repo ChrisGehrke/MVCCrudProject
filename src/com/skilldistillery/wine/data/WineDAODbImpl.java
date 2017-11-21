@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class WineDAODbImpl implements WineDAO {
@@ -16,15 +18,15 @@ public class WineDAODbImpl implements WineDAO {
 	private String user = "wino@localhost";
 	private String pass = "wino";
 
-	
 	public WineDAODbImpl() {
-	try {
-		Class.forName("com.mysql.jdbc.Driver");
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-		System.err.println("Error loading MySQL Driver!!!");
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			System.err.println("Error loading MySQL Driver!!!");
+		}
 	}
-}
+
 	@Override
 	public Wine addWine(Wine w) {
 		String url = "http://13.58.140.51:8080/MVCProject/";
@@ -34,17 +36,14 @@ public class WineDAODbImpl implements WineDAO {
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 
-			String sql = "INSERT INTO wine (id, name, bottle_size, abv, price)"
-					+ " VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO wine (id, name, bottle_size, abv, price)" + " VALUES (?, ?, ?, ?, ?)";
 
 			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			st.setInt(1,w.getId());
+			st.setInt(1, w.getId());
 			st.setString(2, w.getName());
 			st.setDouble(3, w.getBottlesize());
 			st.setDouble(4, w.getAbv());
 			st.setDouble(5, w.getPrice());
-			
-		
 
 			int uc = st.executeUpdate();
 			if (uc == 1) {
@@ -67,17 +66,40 @@ public class WineDAODbImpl implements WineDAO {
 		return w;
 	}
 
-
 	@Override
 	public List<Wine> getAllWines() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Wine getWineById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Wine wine = null;
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT id,name,bottle_size,abv,price FROM wine WHERE id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				id = rs.getInt(1);
+				String name = rs.getString(2);
+				Double bottleSize  = rs.getDouble(3);
+				Double abv = rs.getDouble(4);
+				Double price = rs.getDouble(5);
+				
+				List<Wine> winning = new ArrayList<>();
+				//winning = this.getWineById(id);
+				wine = new Wine(id, name, bottleSize, abv, price);
+
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return wine;
 	}
 
 	@Override
@@ -86,35 +108,30 @@ public class WineDAODbImpl implements WineDAO {
 		String user = "wino@localhost";
 		String pass = "wino";
 
-
 		try {
-			Connection conn = DriverManager.getConnection(url, user, pword);
+			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "UPDATE wine SET name=?, bottle_size=?, abv=? price=?" + "WHERE id=?";
 
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setString(1,w.getTitle());
-			st.setString(2, w.getDescription());
-			st.setInt(3, w.getId());
+			st.setString(1, w.getName());
+			st.setDouble(2, w.getBottlesize());
+			st.setDouble(3, w.getAbv());
 
 			int uc = st.executeUpdate();
 			if (uc == 1) {
 
-				System.out.println(uc + " film record updated");
+				System.out.println(uc + " wine updated");
 				conn.close();
 
 			} else {
-				film = null;
+				w = null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			film = null;
+			w = null;
 		}
-		return film;
-	}
+		return w;
 
-
-
-		return null;
 	}
 
 	@Override
@@ -124,7 +141,7 @@ public class WineDAODbImpl implements WineDAO {
 			conn = DriverManager.getConnection(url, user, pass);
 			String sql = "DELETE FROM wine WHERE id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, Wine.getId());
+			stmt.setInt(1, w.getId());
 			stmt.executeUpdate();
 
 		} catch (SQLException sqle) {
@@ -140,11 +157,4 @@ public class WineDAODbImpl implements WineDAO {
 		}
 		return true;
 	}
-
-
-
-		return null;
-	}
-	
-
-	}
+}
