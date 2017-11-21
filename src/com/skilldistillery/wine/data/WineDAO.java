@@ -7,7 +7,7 @@ public interface WineDAO {
 	List<Wine> getAllWines(); //Retrieve
 	Wine getWineById(int id);
 	Wine updateWine(Wine w); //update
-	Wine deleteWine(Wine w); //delete
+	boolean deleteWine(Wine w); //delete
 	
 
 }
