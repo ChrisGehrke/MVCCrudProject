@@ -129,32 +129,35 @@ public class WineDAODbImpl implements WineDAO {
 			return wine;
 		}
 	@Override
-	public Wine updateWine(Wine w) {
+	public Wine updateWine(Wine wine) {
 
 
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "UPDATE wine SET name=?, bottle_size=?, abv=? price=?" + "WHERE id=?";
+			String sql = "UPDATE wine SET name=?, bottle_size=?, abv=?, price=? WHERE id=?;";
 
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setString(1, w.getName());
-			st.setDouble(2, w.getBottlesize());
-			st.setDouble(3, w.getAbv());
+			st.setString(1, wine.getName());
+			st.setDouble(2, wine.getBottlesize());
+			st.setDouble(3, wine.getAbv());
+			st.setDouble(4, wine.getPrice());
+			st.setInt(5, wine.getId());
 
-			int uc = st.executeUpdate();
-			if (uc == 1) {
+			int up = st.executeUpdate();
+			if (up == 1) {
 
-				System.out.println(uc + " wine updated");
+				System.out.println(up + " wine updated");
 				conn.close();
 
 			} else {
-				w = null;
+				wine = null;
 			}
+			st.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			w = null;
 		}
-		return w;
+		return wine;
 
 	}
 
