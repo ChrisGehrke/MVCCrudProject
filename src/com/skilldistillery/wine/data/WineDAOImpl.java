@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Primary
+
 public class WineDAOImpl implements WineDAO {
 	
 	Map<Integer,Wine> wines;
@@ -57,8 +57,14 @@ public class WineDAOImpl implements WineDAO {
 	}
 
 	@Override
-	public Wine deleteWine(Wine w) {
-		return wines.remove(w.getId());
+	public boolean deleteWine(Wine w) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-}
+	//@Override
+	//public Wine deleteWine(Wine w) {
+	//	return wines.remove(w.getId());
+	}
+
+

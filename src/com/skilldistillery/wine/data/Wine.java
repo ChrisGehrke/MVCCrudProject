@@ -1,5 +1,7 @@
 package com.skilldistillery.wine.data;
 
+import java.util.List;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -34,19 +36,18 @@ public class Wine {
 		this.imageName = imageName;
 	}
 
-	public Wine(int id, String name, double bottlesize, double abv, double price) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.bottlesize = bottlesize;
-		this.abv = abv;
-		this.price = price;
-	}
+	
+		
+	
 
 	public Wine() {
     }
 
-    @Override
+    
+
+	
+
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

@@ -9,14 +9,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
+@Primary
 public class WineDAODbImpl implements WineDAO {
-	private static final String url = "http://13.58.140.51:8080/MVCProject/";
-	private String user = "wino@localhost";
-	private String pass = "wino";
+	private static final String url = "jdbc:mysql://localhost:3306/winesdb";
+	private String user = "root";
+	private String pass = "root";
 
 	public WineDAODbImpl() {
 		try {
@@ -29,9 +32,6 @@ public class WineDAODbImpl implements WineDAO {
 
 	@Override
 	public Wine addWine(Wine w) {
-		String url = "http://13.58.140.51:8080/MVCProject/";
-		String user = "wino@localhost";
-		String pass = "wino";
 
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
@@ -66,47 +66,71 @@ public class WineDAODbImpl implements WineDAO {
 		return w;
 	}
 
-	@Override
+		@Override
 	public List<Wine> getAllWines() {
-		
-		return null;
-	}
+		List<Wine> list = new ArrayList<>();
 
-	@Override
-	public Wine getWineById(int id) {
-		Wine wine = null;
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT id,name,bottle_size,abv,price FROM wine WHERE id = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				id = rs.getInt(1);
+
+			String sql = "SELECT id, name, bottle_size, abv, price, img_url FROM wine";
+
+			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = st.executeQuery();
+			Wine wine = null;
+			while (rs.next()) {
+				int id = rs.getInt(1);
 				String name = rs.getString(2);
-				Double bottleSize  = rs.getDouble(3);
+				Double bottleSize = rs.getDouble(3);
 				Double abv = rs.getDouble(4);
 				Double price = rs.getDouble(5);
+				String imgUrl= rs.getString(6);
 				
-				List<Wine> winning = new ArrayList<>();
-				//winning = this.getWineById(id);
-				wine = new Wine(id, name, bottleSize, abv, price);
-
+				wine = new Wine(id, name, bottleSize, abv, price,imgUrl);
+				list.add(wine);
 			}
+			
 			rs.close();
-			stmt.close();
+			st.close();
 			conn.close();
+		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return wine;
+		return list;
 	}
+	@Override
+	public Wine getWineById(int id) {
+			Wine wine = null;
+			try {
+				Connection conn = DriverManager.getConnection(url, user, pass);
+				String sql = "SELECT id, name, bottle_size, abv, price FROM wine WHERE id = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, id);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					id = rs.getInt(1);
+					String name = rs.getString(2);
+					Double bottleSize = rs.getDouble(3);
+					Double abv = rs.getDouble(4);
+					Double price = rs.getDouble(5);
+					
+					
+					wine = new Wine(id, name, bottleSize, abv, price,null);
 
+				}
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return wine;
+		}
 	@Override
 	public Wine updateWine(Wine w) {
-		String url = "http://13.58.140.51:8080/MVCProject/";
-		String user = "wino@localhost";
-		String pass = "wino";
+
 
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
@@ -157,4 +181,6 @@ public class WineDAODbImpl implements WineDAO {
 		}
 		return true;
 	}
+
+	
 }

@@ -20,7 +20,7 @@
 
 		<input type="submit" value="Get a Wine">
 	</form:form>
-<p>
+	
 <h3 id="allWines">All Wines: </h3><br>
 <c:forEach var="vine" items="${list }">
 <img id="img2" alt="${vine.name} bottle" src="images/${vine.imageName}">
@@ -36,7 +36,6 @@
 </form>
 <br>
 </c:forEach>
-</p>
 
 
 
